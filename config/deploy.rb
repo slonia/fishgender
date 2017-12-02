@@ -1,6 +1,7 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
+require 'mina/whenever'
 
 set :application_name, 'fishgender'
 set :domain, '95.85.49.5'
@@ -42,12 +43,9 @@ task :deploy do
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 
-    # on :launch do
-    #   in_path(fetch(:current_path)) do
-    #     command %{mkdir -p tmp/}
-    #     command %{touch tmp/restart.txt}
-    #   end
-    # end
+    on :launch do
+      # invoke :'whenever:update'
+    end
   end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
