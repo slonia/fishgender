@@ -44,7 +44,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      # invoke :'whenever:update'
+      invoke :'whenever:update'
     end
   end
 
