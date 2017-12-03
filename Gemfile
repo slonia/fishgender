@@ -21,6 +21,7 @@ gem 'mina'
 gem 'bootstrap'
 gem 'unicorn'
 gem 'jquery-rails'
+gem 'mina-unicorn', require: false
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

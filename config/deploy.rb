@@ -1,19 +1,20 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
+require 'mina/unicorn'
 
 set :application_name, 'fishgender'
 set :domain, '95.85.49.5'
 set :deploy_to, '/home/berlin/fishgender'
 set :repository, 'git@github.com:slonia/fishgender.git'
 set :branch, 'master'
+set :keep_releases, 2
 
 # Shared dirs and files will be symlinked into the app-folder by the 'deploy:link_shared_paths' step.
 # Some plugins already add folders to shared_dirs like `mina/rails` add `public/assets`, `vendor/bundle` and many more
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 set :shared_dirs, fetch(:shared_dirs, []).push('public/assets', 'public/uploads', 'tmp')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
-set :keep_releases, 2
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
@@ -51,6 +52,7 @@ task :deploy do
 
     on :launch do
       invoke :'whenever_update'
+      invoke :'unicorn:restart'
     end
   end
 
