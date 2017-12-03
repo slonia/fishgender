@@ -1,7 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
-require 'mina/whenever'
 
 set :application_name, 'fishgender'
 set :domain, '95.85.49.5'
@@ -21,6 +20,12 @@ task :remote_environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .ruby-version or .rbenv-version to your repository.
   invoke :'rbenv:load'
+end
+
+task whenever_update: :environment do
+  in_path fetch(:current_path) do
+    command "#{fetch(:bundle_bin)} exec whenever --update-crontab #{fetch(:whenever_name)} --set 'environment=#{fetch(:rails_env)}&path=#{fetch(:current_path)}'"
+  end
 end
 
 # Put any custom commands you need to run at setup
@@ -44,7 +49,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
-      # invoke :'whenever:update'
+      invoke :'whenever_update'
     end
   end
 

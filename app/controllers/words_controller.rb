@@ -3,7 +3,7 @@ class WordsController < ApplicationController
 
   # GET /words
   def index
-    @words = Word.all
+    @words = Word.fish
   end
 
   # GET /words/1
