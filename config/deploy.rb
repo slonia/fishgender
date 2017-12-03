@@ -26,6 +26,7 @@ end
 task whenever_update: :remote_environment do
   in_path fetch(:current_path) do
     invoke 'rbenv:load'
+    command "#{fetch(:bundle_bin)} exec whenever --clear-crontab #{fetch(:whenever_name)} --set 'environment=#{fetch(:rails_env)}&path=#{fetch(:current_path)}'"
     command "#{fetch(:bundle_bin)} exec whenever --update-crontab #{fetch(:whenever_name)} --set 'environment=#{fetch(:rails_env)}&path=#{fetch(:current_path)}'"
   end
 end
