@@ -25,6 +25,7 @@
           </td>
           <td>
             <div class="btn-group  btn-group-sm">
+              <%= link_to 'Show', photo, class: 'btn btn-info' %>
               <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-info' %>
               <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
             </div>

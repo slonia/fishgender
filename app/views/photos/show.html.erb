@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
-
+<div class="well">
+  <%= image_tag(@photo.image_url) %>
+</div>
+<ul>
+  <%- @photo.get_celebrities.each do |face| %>
+    <%= content_tag(:li, face) %>
+  <%- end %>
+</ul>
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

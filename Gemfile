@@ -23,6 +23,9 @@ gem 'unicorn'
 gem 'jquery-rails'
 gem 'mina-unicorn', require: false
 
+#faces
+gem 'aws-sdk'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'capybara', '~> 2.13'
