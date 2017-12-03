@@ -13,7 +13,7 @@ set :branch, 'master'
 # run `mina -d` to see all folders and files already included in `shared_dirs` and `shared_files`
 set :shared_dirs, fetch(:shared_dirs, []).push('public/assets', 'public/uploads', 'tmp')
 set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/secrets.yml')
-
+set :keep_releases, 2
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
 task :remote_environment do
@@ -22,8 +22,9 @@ task :remote_environment do
   invoke :'rbenv:load'
 end
 
-task whenever_update: :environment do
+task whenever_update: :remote_environment do
   in_path fetch(:current_path) do
+    invoke 'rbenv:load'
     command "#{fetch(:bundle_bin)} exec whenever --update-crontab #{fetch(:whenever_name)} --set 'environment=#{fetch(:rails_env)}&path=#{fetch(:current_path)}'"
   end
 end
