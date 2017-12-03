@@ -3,7 +3,8 @@ class WordsController < ApplicationController
 
   # GET /words
   def index
-    @words = Word.fish
+    @words = Word.order(:used)
+    @words = @words.where(kind: params[:kind]) if params.key?(:kind)
   end
 
   # GET /words/1

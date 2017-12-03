@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Words</h1>
-
+<div class="btn-group btn-group-sm">
+  <%= link_to 'Рыбы', words_path(kind: :fish), class: 'btn btn-primary' %>
+  <%= link_to 'Прилагательные', words_path(kind: :adj), class: 'btn btn-primary' %>
+  <%= link_to 'Все', words_path,  class: 'btn btn-primary' %>
+</div>
 <table class="table">
   <thead>
     <tr>
