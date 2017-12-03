@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 6.minutes do
+every 4.hours do
   rake "fishgender:post"
 end
