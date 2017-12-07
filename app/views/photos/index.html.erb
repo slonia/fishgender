@@ -3,37 +3,26 @@
 <h1>Photos</h1>
 
 <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary' %>
-<table class="table">
-  <thead>
-    <tr>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
 
-    <tbody>
-      <% @photos.each do |photo| %>
-        <tr>
-          <td>
-            <div class="row">
-              <div class="col-sm-2">
-                <%= image_tag(photo.image_url, class: 'img-fluid') %>
-              </div>
-            </div>
-          </td>
-          <td>
-            <%= photo.used%>
-          </td>
-          <td>
-            <div class="btn-group  btn-group-sm">
-              <%= link_to 'Show', photo, class: 'btn btn-info' %>
-              <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-info' %>
-              <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="row">
+  <% @photos.each do |photo| %>
+    <div class="col-sm-4">
+       <%= image_tag(photo.image_url, class: 'img-fluid') %>
+    </div>
+    <div class="col-sm-2">
+      <%= photo.tags.join(', ') %>
+    </div>
+    <div class="col-sm-2">
+      <%= photo.used%>
+    </div>
+    <div class="col-sm-4">
+      <div class="btn-group  btn-group-sm">
+        <%= link_to 'Show', photo, class: 'btn btn-info' %>
+        <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-info' %>
+        <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>
 <br>
 
