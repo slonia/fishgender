@@ -22,3 +22,7 @@
 every 6.hours do
   rake "fishgender:post"
 end
+
+every 1.day do
+  rake "importer:tags"
+end

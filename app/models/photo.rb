@@ -3,7 +3,16 @@ class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
   serialize :tags, Array
 
+  scope :active, -> {where(active: true)}
   before_save :set_tags
+
+  def deactivate
+    update(active: false)
+  end
+
+  def activate
+    update(active: true)
+  end
 
   private
 

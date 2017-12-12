@@ -9,8 +9,27 @@
   </head>
 
   <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+     <a class="navbar-brand" href="#">Fishgender</a>
+     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <%= link_to 'Photos', photos_path, class: "#{controller_name == 'photos' ? 'nav-link active' : 'nav-link'}"%>
+        </li>
+         <li class="nav-item">
+           <%= link_to 'Words',words_path, class: "#{controller_name == 'words' ? 'nav-link active' : 'nav-link'}"%>
+         </li>
+       </ul>
+     </div>
+   </nav>
+
+   <main role="main" class="container pt-2">
+      <% if notice %>
+        <div id="notice" class="alert alert-primary" role="alert"><%= notice %></div>
+      <% end %>
       <%= yield %>
     </div>
+
+   </main>
   </body>
 </html>

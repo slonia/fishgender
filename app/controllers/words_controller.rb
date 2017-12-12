@@ -1,14 +1,10 @@
 class WordsController < ApplicationController
-  before_action :set_word, only: [:show, :edit, :update, :destroy]
+  before_action :set_word, only: [:edit, :update, :destroy]
 
   # GET /words
   def index
-    @words = Word.order(:used)
+    @words = Word.order(:used, :updated_at)
     @words = @words.where(kind: params[:kind]) if params.key?(:kind)
-  end
-
-  # GET /words/1
-  def show
   end
 
   # GET /words/new

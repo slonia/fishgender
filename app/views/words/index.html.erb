@@ -1,36 +1,34 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Words</h1>
-<div class="btn-group btn-group-sm">
-  <%= link_to 'Рыбы', words_path(kind: :fish), class: 'btn btn-primary' %>
-  <%= link_to 'Прилагательные', words_path(kind: :adj), class: 'btn btn-primary' %>
-  <%= link_to 'Все', words_path,  class: 'btn btn-primary' %>
+<div class="row mt-2 justify-content-between">
+  <div class="col-2">
+    <%= link_to 'New Word', new_word_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="col-4">
+    <div class="btn-group btn-group">
+      <%= link_to 'Рыбы', words_path(kind: :fish), class: 'btn btn-info' %>
+      <%= link_to 'Прилагательные', words_path(kind: :adj), class: 'btn btn-info' %>
+      <%= link_to 'Все', words_path,  class: 'btn btn-info' %>
+    </div>
+  </div>
 </div>
-<table class="table">
-  <thead>
-    <tr>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @words.each do |word| %>
-      <tr>
-        <td><%= word.word %></td>
-        <td>
-          <%= word.used%>
-        </td>
-        <td>
-          <div class="btn-group  btn-group-sm">
-            <%= link_to 'Edit', edit_word_path(word), class: 'btn btn-info' %>
-            <%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Word', new_word_path %>
+<div class="row mt-2">
+  <div class="col">
+    <table class="table table-sm table-striped">
+      <tbody>
+        <% @words.each do |word| %>
+          <tr>
+            <td><%= word.word %></td>
+            <td>
+              <%= word.used%>
+            </td>
+            <td>
+              <div class="btn-group btn-group-sm float-right">
+                <%= link_to 'Edit', edit_word_path(word), class: 'btn btn-info' %>
+                <%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

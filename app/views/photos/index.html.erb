@@ -1,28 +1,29 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Photos</h1>
-
-<%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary' %>
-
-<div class="row">
+<div class="row mt-2">
+  <div class="col">
+    <%= link_to 'New Photo', new_photo_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+<div class="row mt-2">
   <% @photos.each do |photo| %>
-    <div class="col-sm-4">
+    <div class="col-4">
        <%= image_tag(photo.image_url, class: 'img-fluid') %>
     </div>
-    <div class="col-sm-2">
+    <div class="col-2">
       <%= photo.tags.join(', ') %>
     </div>
-    <div class="col-sm-2">
+    <div class="col-2">
       <%= photo.used%>
     </div>
-    <div class="col-sm-4">
+    <div class="col-4">
       <div class="btn-group  btn-group-sm">
-        <%= link_to 'Show', photo, class: 'btn btn-info' %>
-        <%= link_to 'Edit', edit_photo_path(photo), class: 'btn btn-info' %>
-        <%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% if photo.active? %>
+          <%= link_to 'Deactivate', deactivate_photo_path(photo), class: 'btn btn-danger', method: :post %>
+        <% else %>
+          <%= link_to 'Activate', activate_photo_path(photo), class: 'btn btn-success', method: :post %>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
-<br>
 

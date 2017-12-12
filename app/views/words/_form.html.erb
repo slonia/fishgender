@@ -10,8 +10,8 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.text_field :word, class: 'form-control' %>
   </div>
+  <%= form.submit 'Submit', class: 'btn btn-success' %>
 <% end %>

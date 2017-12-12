@@ -12,4 +12,9 @@ namespace :importer do
       Photo.create(image: File.open(image, 'rb'))
     end
   end
+
+  desc "Update tags on photos"
+  task tags: :environment do
+    Photo.where("tags = ?", [].to_yaml).map(&:save)
+  end
 end

@@ -19,7 +19,7 @@ class Generator
   end
 
   def random_photo
-    photo = Photo.unused.sample
+    photo = Photo.active.unused.sample
     photo.use!
     photo
   end

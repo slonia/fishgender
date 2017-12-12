@@ -3,7 +3,9 @@ class Word < ApplicationRecord
 
   enum kind: [:adj, :fish]
 
-  validates :word, uniqueness: { scope: :kind}
+  validates :word, uniqueness: { scope: :kind }
+  validates :word, presence: true
+
   class<< self
     def create_normalized(word, kind)
       kind = kind.to_i
