@@ -22,6 +22,7 @@ gem 'bootstrap'
 gem 'unicorn'
 gem 'jquery-rails'
 gem 'mina-unicorn', require: false
+gem 'mina-whenever', require: false
 
 #faces
 gem 'aws-sdk'
