@@ -19,8 +19,8 @@
   <div class="form-group row">
     <%= form.label :kind, class: 'col-2 col-form-label' %>
     <div class="col-10">
-      <%= form.select :kind, Word.kinds.keys, {}, class: 'form-control' %>
+      <%= form.select :kind, enum_select(Word, :kind), {}, class: 'form-control' %>
     </div>
   </div>
-  <%= form.submit 'Submit', class: 'btn btn-success' %>
+  <%= form.submit t('actions.submit'), class: 'btn btn-success' %>
 <% end %>

@@ -1,12 +1,12 @@
 <div class="row mt-2 justify-content-between">
   <div class="col-2">
-    <%= link_to 'New Word', new_word_path, class: 'btn btn-primary' %>
+    <%= link_to t('actions.new'), new_word_path, class: 'btn btn-primary' %>
   </div>
   <div class="col-4">
     <div class="btn-group btn-group float-right">
-      <%= link_to 'Рыбы', words_path(kind: :fish), class: 'btn btn-info' %>
-      <%= link_to 'Прилагательные', words_path(kind: :adj), class: 'btn btn-info' %>
-      <%= link_to 'Все', words_path,  class: 'btn btn-info' %>
+      <%= link_to t('enums.kind.fish'), words_path(kind: :fish), class: 'btn btn-info' %>
+      <%= link_to  t('enums.kind.adj'), words_path(kind: :adj), class: 'btn btn-info' %>
+      <%= link_to  t('enums.kind.all'), words_path,  class: 'btn btn-info' %>
     </div>
   </div>
 </div>
@@ -22,8 +22,8 @@
             </td>
             <td>
               <div class="btn-group btn-group-sm float-right">
-                <%= link_to 'Edit', edit_word_path(word), class: 'btn btn-info' %>
-                <%= link_to 'Destroy', word, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                <%= link_to t('actions.edit'), edit_word_path(word), class: 'btn btn-info' %>
+                <%= link_to t('actions.destroy'), word, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
               </div>
             </td>
           </tr>

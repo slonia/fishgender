@@ -1,0 +1,22 @@
+ru:
+  actions:
+    activate: 'Активировать'
+    deactivate: 'Деактивировать'
+    destroy: 'Удалить'
+    edit: 'Изменить'
+    new: 'Создать'
+    submit: 'Отправить'
+  menu:
+    photos: 'Фото'
+    title: 'Fishgender'
+    words: 'Слова'
+  enums:
+    kind:
+      adj: 'Прилагательные'
+      all: 'Все'
+      fish: 'Рыбы'
+  activerecord:
+    attributes:
+      word:
+        word: Слово
+        kind: Тип

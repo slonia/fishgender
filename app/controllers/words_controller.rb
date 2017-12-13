@@ -21,7 +21,7 @@ class WordsController < ApplicationController
     @word = Word.new(word_params)
 
     if @word.save
-      redirect_to @word, notice: 'Word was successfully created.'
+      redirect_to words_url, notice: 'Word was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class WordsController < ApplicationController
   # PATCH/PUT /words/1
   def update
     if @word.update(word_params)
-      redirect_to @word, notice: 'Word was successfully updated.'
+      redirect_to words_url, notice: 'Word was successfully updated.'
     else
       render :edit
     end
@@ -50,6 +50,6 @@ class WordsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def word_params
-      params.fetch(:word, {})
+      params.require(:word).permit(:word, :kind)
     end
 end
