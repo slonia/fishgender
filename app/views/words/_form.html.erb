@@ -10,8 +10,17 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-group">
-    <%= form.text_field :word, class: 'form-control' %>
+  <div class="form-group row">
+    <%= form.label :word, class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.text_field :word, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= form.label :kind, class: 'col-2 col-form-label' %>
+    <div class="col-10">
+      <%= form.select :kind, Word.kinds.keys, {}, class: 'form-control' %>
+    </div>
   </div>
   <%= form.submit 'Submit', class: 'btn btn-success' %>
 <% end %>
