@@ -17,4 +17,9 @@ namespace :importer do
   task tags: :environment do
     Photo.where("tags = ?", [].to_yaml).map(&:save)
   end
+
+  desc "From instagram"
+  task instagram: :environment do
+    InstagramDownloader.new.run
+  end
 end

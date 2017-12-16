@@ -12,9 +12,10 @@ class Photo < ApplicationRecord
 
   # validations
   validates :instagram_id, uniqueness: true, allow_blank: true
+  validates :fingerprint, uniqueness: true, allow_blank: true
 
   # callbacks
-  before_save :set_tags
+  before_save :process_image
 
   def deactivate
     update(active: false)
@@ -26,16 +27,22 @@ class Photo < ApplicationRecord
 
   private
 
-    def set_tags
+    def process_image
       @rekognition = Aws::Rekognition::Client.new(region: 'us-west-2', credentials: aws_credentials)
       faces = @rekognition.recognize_celebrities(image: {bytes: image.file_object.read}).celebrity_faces
       tags = faces.map(&:name)
       active = (source == 'manual') || tags.include?('Vera Brezhneva')
       self.tags = tags
       self.active = active
+      self.fingerprint = calculate_fingerprint
     end
 
     def aws_credentials
       @aws_credentials ||= Aws::Credentials.new(Rails.application.secrets.aws[:id], Rails.application.secrets.aws[:secret])
+    end
+
+    def calculate_fingerprint
+      phashion = Phashion::Image.new(image.file_object.path)
+      phashion.fingerprint
     end
 end

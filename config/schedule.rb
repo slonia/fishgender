@@ -26,3 +26,7 @@ end
 every 1.day do
   rake "importer:tags"
 end
+
+every 4.hours do
+  rake "importer:instagram"
+end

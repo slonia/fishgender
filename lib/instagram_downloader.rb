@@ -2,15 +2,14 @@ class InstagramDownloader
   USER = 'ververa'
 
   def new
-    @last_id = Photo.unscoped.where.not(instagram_id: nil).order(:created_at).last.instagram_id
+    # @last_id = Photo.unscoped.where.not(instagram_id: nil).order(:created_at).last.instagram_id
   end
 
   def run
-    images = RubyInstagramScraper.get_user_media_nodes(USER, @last_id)
+    images = RubyInstagramScraper.get_user_media_nodes(USER)
     images.each do |image|
       process_image(image)
       puts 'done'
-      sleep 5
     end
   end
 

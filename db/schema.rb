@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216174114) do
+ActiveRecord::Schema.define(version: 20171216204232) do
 
   create_table "photos", force: :cascade do |t|
     t.string "image"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171216174114) do
     t.boolean "active", default: true, null: false
     t.integer "source", default: 0, null: false
     t.string "instagram_id"
+    t.string "fingerprint"
   end
 
   create_table "words", force: :cascade do |t|
