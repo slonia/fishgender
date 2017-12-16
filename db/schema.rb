@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212193422) do
+ActiveRecord::Schema.define(version: 20171216174114) do
 
   create_table "photos", force: :cascade do |t|
     t.string "image"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20171212193422) do
     t.datetime "updated_at", null: false
     t.text "tags"
     t.boolean "active", default: true, null: false
+    t.integer "source", default: 0, null: false
+    t.string "instagram_id"
   end
 
   create_table "words", force: :cascade do |t|

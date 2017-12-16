@@ -26,6 +26,7 @@ gem 'mina-whenever', require: false
 
 #faces
 gem 'aws-sdk'
+gem 'ruby-instagram-scraper'
 
 group :development, :test do
   gem 'pry-rails'
