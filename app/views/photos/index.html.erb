@@ -21,6 +21,7 @@
         <% else %>
           <%= link_to t('actions.activate'), activate_photo_path(photo), class: 'btn btn-success', method: :post %>
         <% end %>
+        <%= link_to t('actions.destroy'), photo, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
       </div>
     </div>
   <% end %>
