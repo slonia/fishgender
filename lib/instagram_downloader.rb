@@ -19,7 +19,8 @@ class InstagramDownloader
     Photo.create(
       image: open(image['display_src']),
       source: :instagram,
-      instagram_id: image['id']
+      instagram_id: image['id'],
+      instagram_code: image['code']
     )
   end
 end

@@ -6,12 +6,14 @@ class Photo < ApplicationRecord
   mount_uploader :image, ImageUploader
   serialize :tags, Array
   enum source: %w(manual instagram)
+  INSTAGRAM_URL = "https://www.instagram.com/p/"
 
   # scopes
   scope :active, -> {where(active: true)}
 
   # validations
   validates :instagram_id, uniqueness: true, allow_blank: true
+  validates :fingerprint, uniqueness: true, allow_blank: true
   validates :fingerprint, uniqueness: true, allow_blank: true
 
   # callbacks
@@ -23,6 +25,10 @@ class Photo < ApplicationRecord
 
   def activate
     update(active: true)
+  end
+
+  def instagram_link
+    instagram_code ? "#{INSTAGRAM_URL}#{instagram_code}" : nil
   end
 
   private
