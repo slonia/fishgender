@@ -18,6 +18,7 @@ class Photo < ApplicationRecord
 
   # callbacks
   before_save :process_image
+  before_create :set_active
 
   def deactivate
     update(active: false)
@@ -37,10 +38,12 @@ class Photo < ApplicationRecord
       @rekognition = Aws::Rekognition::Client.new(region: 'us-west-2', credentials: aws_credentials)
       faces = @rekognition.recognize_celebrities(image: {bytes: image.file_object.read}).celebrity_faces
       tags = faces.map(&:name)
-      active = (source == 'manual') || tags.include?('Vera Brezhneva')
       self.tags = tags
-      self.active = active
       self.fingerprint = calculate_fingerprint
+    end
+
+    def set_active
+      self.active = (source == 'manual') || tags.include?('Vera Brezhneva')
     end
 
     def aws_credentials
