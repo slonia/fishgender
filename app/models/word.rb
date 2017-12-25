@@ -10,8 +10,9 @@ class Word < ApplicationRecord
     def create_normalized(word, kind)
       kind = kind.to_i
       word = word.chomp.squish
-      word = word[0..-3] + 'ая' if kind == 0
-      self.find_or_create_by(word:  word.mb_chars.downcase, kind: kind)
+      word = word.mb_chars.downcase
+      word = feminize(word) if kind == 0
+      self.find_or_create_by(word:  word, kind: kind)
     end
 
     def random_text
@@ -19,6 +20,14 @@ class Word < ApplicationRecord
       adj = self.adj.unused.sample
       fish.use! && adj.use!
       "#{adj.word} #{fish.word}"
+    end
+
+    private
+
+    def feminize(word)
+      word = word.sub(/ний$/, "няя")
+      word = word.sub(/ный$/, "ная")
+      word
     end
   end
 end
