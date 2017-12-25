@@ -11,7 +11,7 @@ class Word < ApplicationRecord
       kind = kind.to_i
       word = word.chomp.squish
       word = word.mb_chars.downcase
-      word = feminize(word) if kind == 0
+      word = feminize(word) if kind.to_i == 0
       self.find_or_create_by(word:  word, kind: kind)
     end
 
@@ -25,8 +25,8 @@ class Word < ApplicationRecord
     private
 
     def feminize(word)
-      word = word.sub(/ий$/, "яя")
-      word = word.sub(/ый$/, "ая")
+      word = word.sub(/ий/, "яя")
+      word = word.sub(/ый/, "ая")
       word
     end
   end
