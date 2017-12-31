@@ -12,7 +12,11 @@ class Generator
     text = Word.random_text
     photo = random_photo
     text += ' ' + photo.instagram_link if photo.instagram_code
-    @client.update_with_media(text, photo.image.file_object)
+    send_tweet(text, photo.image.file_object)
+  end
+
+  def send_tweet(text, image)
+    @client.update_with_media(text, image)
   end
 
   private

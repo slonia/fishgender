@@ -30,3 +30,7 @@ end
 every 4.hours do
   rake "importer:instagram"
 end
+
+every "0 16 31 12 *" do
+  rake "fishgender:new_year"
+end

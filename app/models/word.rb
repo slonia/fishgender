@@ -25,8 +25,8 @@ class Word < ApplicationRecord
     private
 
     def feminize(word)
-      word = word.sub(/ий/, "яя")
-      word = word.sub(/ый/, "ая")
+      word = word[0..-3] + "яя" if word.ends_with?("ий")
+      word = word[0..-3] + "ая" if word.ends_with?("ый")
       word
     end
   end
