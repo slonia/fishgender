@@ -12,6 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'pg'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
+gem 'httparty'
 
 # fishgender
 gem 'carrierwave'
