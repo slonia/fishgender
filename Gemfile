@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'httparty'
 gem 'json', '>= 1.9'
-gem 'therubyracer'
+gem 'mini_racer'
 
 # fishgender
 gem 'carrierwave'
