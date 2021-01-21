@@ -23,30 +23,3 @@ namespace :importer do
     InstagramDownloader.new.run
   end
 end
-
-
-
-ua = "Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:16.0.1) Gecko/20121011 Firefox/16.0.1"
-response = http.request(Net::HTTP::Get.new(uri.request_uri))
-url = "https://www.instagram.com"
-uri = URI.parse(url)
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-resp, data = http.get("/", {"User-Agent" => ua})
-cookie = resp.response['set-cookie'].split("; ")[0]
-shared_data = get_shared_data(resp.body)
-headers = {
-  'X-CSRFToken' => shared_data['config']['csrf_token'],
-  'User-Agent' => ua,
-  'Cookie' => cookie
-}
-rhx = shared_data['rhx_gis']
-def get_shared_data(str)
-  match = str.match(/window\._sharedData = (\{[^\n]*\});/)
-  matches = match.to_a
-  if matches.size > 1
-    JSON.load(matches[1])
-  else
-    {}
-  end
-end

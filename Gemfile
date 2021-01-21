@@ -9,11 +9,10 @@ gem 'rails', '~> 5.1.4'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'pg'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'httparty'
-
+gem 'json', '>= 1.9'
 # fishgender
 gem 'carrierwave'
 gem 'twitter'
@@ -43,3 +42,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :production do
+  gem 'pg'
+end
