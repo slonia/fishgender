@@ -49,6 +49,7 @@ task :deploy do
     invoke :'deploy:cleanup'
 
     on :launch do
+      invoke :'rvm:use', 'ruby-2.7.2@default'
       invoke :'whenever:update'
       invoke :'unicorn:restart'
     end
